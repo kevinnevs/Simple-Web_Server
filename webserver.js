@@ -41,6 +41,7 @@ const handlePostRequest = (req, res) => {
     // Handling the end of the request
     req.on('end', () => {
       const postData = qs.parse(body);
+      console.log(postData);
 
       res.writeHead(200, {'Content-Type': 'text/plain'});
       res.end(`Received POST data: ${JSON.stringify(postData)}`);
@@ -52,7 +53,7 @@ const handlePostRequest = (req, res) => {
 };
 
 // Create a simple HTTP server
-const server = http.createServer((req, res) => {
+const app = http.createServer((req, res) => {
   // Handling different HTTP methods
   if (req.method === 'GET') {
     handleGetRequest(req, res);
@@ -64,8 +65,10 @@ const server = http.createServer((req, res) => {
   }
 });
 
+module.exports = app;
+
 // Set the server to listen on port 3000
 const PORT = 3000;
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
