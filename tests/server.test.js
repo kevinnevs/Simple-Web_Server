@@ -1,7 +1,7 @@
 const http = require('http');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../your_server_file_name'); // Replace with the actual filename of your server
+const server = require('../webserver.js');
 
 const { expect } = chai;
 
@@ -9,12 +9,11 @@ chai.use(chaiHttp);
 
 describe('Server Tests', () => {
   before(() => {
-    // Start your server before running tests (optional)
-    // You might want to use a testing library like supertest for better HTTP request testing
+    // Starts server before running tests (optional)
   });
 
   after(() => {
-    // Stop your server after running tests (optional)
+    // Stop server after running tests (optional)
   });
 
   it('should handle GET requests', (done) => {
@@ -35,15 +34,16 @@ describe('Server Tests', () => {
 
     chai.request(server)
       .post('/submit')
+      .type('form')
       .send(postData)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.text).to.include('Received POST data');
-        expect(res.text).to.include('"param1":"value1"');
-        expect(res.text).to.include('"param2":"value2"');
+        expect(res.text).to.include(`Received POST data: {"param1":"value1","param2":"value2"}`);
+        // expect(res.text).to.include(`{\\"param1\\":\\"v`);
+        // expect(res.text).to.include('"param2":"value2"');
         done();
       });
   });
-
-  // Add more test cases as needed
+  
+  // Will add more test cases as needed.
 });
