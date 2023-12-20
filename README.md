@@ -34,6 +34,7 @@ The server will be running at [http://localhost:3000/](http://localhost:3000/).
 
 - Access the root path: [http://localhost:3000/](http://localhost:3000/)
 - Access the about page: [http://localhost:3000/about](http://localhost:3000/about)
+- Access the home page: [http://localhost:3000/about](http://localhost:3000/home)
 
 ### POST Requests
 
